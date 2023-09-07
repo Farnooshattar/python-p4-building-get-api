@@ -27,6 +27,7 @@ def index():
 def games():
 
     games = []
+    # for game in Game.query.order_by(Game.title).limit(2).all():
     for game in Game.query.all():
         game_dict = {
             "title": game.title,
@@ -37,8 +38,11 @@ def games():
         games.append(game_dict)
 
     response = make_response(
-        games,
+        jsonify(games),
         200
+        # games,
+        # 200,
+        # {"Content-Type": "application/json"}
     )
 
     return response
